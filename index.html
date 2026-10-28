@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f5f0">
+<title>Faqih Creative | Premium Design Studio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg:#f7f5f0;
+  --white:#fff;
+  --dark:#20201e;
+  --muted:#77766f;
+  --gold:#b69a67;
+  --line:#e7e2d8;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:85px;
+}
+
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+body.locked { overflow:hidden; }
+
+a { text-decoration:none; color:inherit; }
+button,input,textarea { font:inherit; }
+button { cursor:pointer; }
+
+.container {
+  width:min(1120px,calc(100% - 36px));
+  margin:auto;
+}
+
+.topline {
+  height:3px;
+  background:linear-gradient(90deg,#b69a67,#ead9b4,#b69a67);
+}
+
+/* WELCOME ANIMATION */
+#welcomeScreen {
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:24px;
+  background:var(--bg);
+  overflow:hidden;
+  transition:opacity .8s ease,visibility .8s ease;
+}
+
+#welcomeScreen::before,
+#welcomeScreen::after {
+  content:"";
+  position:absolute;
+  width:280px;
+  height:280px;
+  border:1px solid #b69a6733;
+  border-radius:50%;
+  pointer-events:none;
+  animation:ringFloat 7s ease-in-out infinite alternate;
+}
+
+#welcomeScreen::after {
+  width:380px;
+  height:380px;
+  animation-delay:-3s;
+}
+
+#welcomeScreen.hide {
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.welcome-content {
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:550px;
+  animation:welcomeAppear 1s ease both;
+}
+
+.welcome-logo {
+  width:76px;
+  height:76px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 25px;
+  border:1px solid var(--gold);
+  border-radius:18px;
+  color:var(--gold);
+  font:800 25px Manrope,sans-serif;
+  animation:logoFloat 2.5s ease-in-out infinite;
+}
+
+.welcome-line {
+  width:45px;
+  height:1px;
+  background:var(--gold);
+  margin:0 auto 22px;
+  animation:lineExpand 1s ease both;
+}
+
+.welcome-label {
+  color:#9a8154;
+  font-size:10px;
+  letter-spacing:3px;
+  font-weight:700;
+}
+
+.welcome-content h1 {
+  font:800 clamp(32px,7vw,52px)/1.2 Manrope,sans-serif;
+  letter-spacing:-2px;
+  margin:20px 0 12px;
+}
+
+.welcome-content h1 span { color:var(--gold); }
+
+.welcome-desc {
+  font-size:12px;
+  color:var(--muted);
+  letter-spacing:.5px;
+}
+
+.welcome-loader {
+  width:130px;
+  height:2px;
+  background:var(--line);
+  margin:35px auto 15px;
+  overflow:hidden;
+  border-radius:10px;
+}
+
+.welcome-loader span {
+  display:block;
+  height:100%;
+  width:0;
+  background:var(--gold);
+  animation:loadingBar 1.7s ease forwards;
+}
+
+.welcome-loading {
+  font-size:9px;
+  letter-spacing:2px;
+  color:#99958b;
+}
+
+@keyframes welcomeAppear {
+  from { opacity:0; transform:translateY(18px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+@keyframes logoFloat {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-5px); }
+}
+
+@keyframes lineExpand {
+  from { width:0; opacity:0; }
+  to { width:45px; opacity:1; }
+}
+
+@keyframes loadingBar {
+  from { width:0; }
+  to { width:100%; }
+}
+
+@keyframes ringFloat {
+  from { transform:translateY(-12px) rotate(0); }
+  to { transform:translateY(12px) rotate(15deg); }
+}
+
+/* NAVIGATION */
+header {
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:#f7f5f0ed;
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+
+nav {
+  min-height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:Manrope,sans-serif;
+  font-weight:800;
+}
+
+.brand-mark {
+  width:40px;
+  height:40px;
+  border:1px solid var(--gold);
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  font-size:14px;
+}
+
+.brand small {
+  display:block;
+  font:500 10px 'DM Sans',sans-serif;
+  color:var(--muted);
+  letter-spacing:2px;
+}
+
+.navlinks {
+  display:flex;
+  gap:22px;
+  font-size:12px;
+}
+
+.navlinks a:hover { color:var(--gold); }
+
+.menu-btn {
+  display:none;
+  border:0;
+  background:none;
+  font-size:24px;
+}
+
+/* BUTTONS */
+.btn {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  padding:12px 18px;
+  border:1px solid var(--dark);
+  border-radius:8px;
+  background:var(--dark);
+  color:white;
+  font-size:12px;
+  font-weight:700;
+  transition:.25s;
+}
+
+.btn:hover {
+  background:var(--gold);
+  border-color:var(--gold);
+  transform:translateY(-2px);
+}
+
+.btn-outline {
+  background:transparent;
+  color:var(--dark);
+}
+
+/* HERO */
+.hero {
+  position:relative;
+  padding:95px 0 72px;
+  overflow:hidden;
+}
+
+.hero::before {
+  content:"";
+  position:absolute;
+  right:-130px;
+  top:-170px;
+  width:420px;
+  height:420px;
+  border:1px solid #b69a6738;
+  border-radius:50%;
+  box-shadow:0 0 0 45px #b69a6709,0 0 0 90px #b69a6707;
+  animation:ringFloat 8s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+
+.eyebrow,.kicker {
+  color:#927849;
+  font-size:10px;
+  letter-spacing:2.5px;
+  font-weight:700;
+  text-transform:uppercase;
+}
+
+.eyebrow::before {
+  content:"";
+  display:inline-block;
+  width:25px;
+  height:1px;
+  background:var(--gold);
+  vertical-align:middle;
+  margin-right:10px;
+}
+
+.hero h1 {
+  font:800 clamp(42px,7vw,80px)/1.08 Manrope,sans-serif;
+  letter-spacing:-3px;
+  margin:22px 0;
+  max-width:850px;
+}
+
+.hero h1 em {
+  font-style:normal;
+  color:var(--gold);
+}
+
+.hero-copy {
+  max-width:560px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.hero-actions {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+.hero-meta {
+  display:flex;
+  gap:35px;
+  flex-wrap:wrap;
+  margin-top:48px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+  font-size:11px;
+  color:var(--muted);
+}
+
+.hero-meta strong {
+  display:block;
+  font:800 18px Manrope,sans-serif;
+  color:var(--dark);
+}
+
+section { padding:75px 0; }
+
+.section-head {
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:25px;
+  margin-bottom:30px;
+}
+
+h2 {
+  font:800 clamp(29px,4vw,43px)/1.2 Manrope,sans-serif;
+  letter-spacing:-1.5px;
+  margin-top:8px;
+}
+
+.section-desc {
+  max-width:430px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* SERVICE CATALOG */
+.services-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.service-card {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  min-height:230px;
+  transition:.25s;
+}
+
+.service-card:hover {
+  transform:translateY(-5px);
+  border-color:#c9b48d;
+  box-shadow:0 15px 35px #3027190b;
+}
+
+.card-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px;
+}
+
+.service-icon {
+  width:40px;
+  height:40px;
+  background:#f4efe5;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  color:#927849;
+  font-size:19px;
+}
+
+.service-number { font-size:10px; color:#aaa69c; }
+
+.service-card h3 {
+  font:700 17px Manrope,sans-serif;
+  margin-bottom:6px;
+}
+
+.service-card p {
+  font-size:12px;
+  color:var(--muted);
+}
+
+.service-bottom {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:auto;
+  padding-top:20px;
+}
+
+.price { font:800 19px Manrope,sans-serif; }
+
+.price small {
+  font:500 10px 'DM Sans',sans-serif;
+  color:var(--muted);
+}
+
+.add-btn {
+  border:1px solid var(--line);
+  background:white;
+  border-radius:7px;
+  padding:9px 12px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.add-btn:hover { background:var(--dark); color:white; }
+
+.note { font-size:11px; color:var(--muted); margin-top:15px; }
+
+/* OWNER INSTAGRAM */
+.portfolio { background:#252521; color:var(--bg); }
+.portfolio .section-desc { color:#b8b6ae; }
+.portfolio .kicker { color:#c7ad7c; }
+
+.proof-panel {
+  border:1px solid #ffffff24;
+  border-radius:18px;
+  padding:clamp(25px,5vw,48px);
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:25px;
+  background:linear-gradient(120deg,#ffffff08,transparent);
+}
+
+.proof-tag {
+  font-size:10px;
+  letter-spacing:2px;
+  color:#c7ad7c;
+}
+
+.proof-panel h3 {
+  font:700 clamp(23px,3.5vw,34px)/1.3 Manrope,sans-serif;
+  margin:13px 0;
+}
+
+.proof-panel p {
+  font-size:12px;
+  color:#c0beb6;
+  max-width:540px;
+}
+
+.proof-btn {
+  background:var(--gold);
+  border-color:var(--gold);
+  color:#20201e;
+  white-space:nowrap;
+}
+
+/* WHY US */
+.why-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.why-card {
+  padding:24px;
+  background:#ffffff99;
+  border-top:1px solid var(--gold);
+}
+
+.why-card .num {
+  font:800 25px Manrope,sans-serif;
+  color:#c4ad82;
+}
+
+.why-card h3 {
+  font:700 15px Manrope,sans-serif;
+  margin:12px 0 6px;
+}
+
+.why-card p { font-size:12px; color:var(--muted); }
+
+/* RATING */
+.rating-wrap {
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:30px;
+  align-items:center;
+  background:white;
+  border:1px solid var(--line);
+  padding:clamp(25px,5vw,42px);
+  border-radius:18px;
+}
+
+.rating-score {
+  border-right:1px solid var(--line);
+  padding-right:25px;
+}
+
+.stars { font-size:25px; letter-spacing:4px; color:var(--gold); }
+
+.rating-score strong {
+  display:block;
+  font:800 54px/1.2 Manrope,sans-serif;
+  letter-spacing:-3px;
+}
+
+.rating-score p,.rating-content p {
+  font-size:12px;
+  color:var(--muted);
+}
+
+.rating-content h3 {
+  font:700 19px Manrope,sans-serif;
+  margin-bottom:10px;
+}
+
+.rating-disclaimer { font-size:10px!important; margin-top:12px; }
+
+/* ORDER STEPS */
+.steps {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.step {
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:13px;
+}
+
+.step span { font:800 24px Manrope,sans-serif; color:var(--gold); }
+
+.step h3 {
+  font:700 14px Manrope,sans-serif;
+  margin:12px 0 6px;
+}
+
+.step p { font-size:11px; color:var(--muted); }
+
+/* FAQ */
+.faq-list { max-width:800px; margin:auto; }
+
+details { border-bottom:1px solid var(--line); padding:18px 0; }
+
+summary {
+  cursor:pointer;
+  list-style:none;
+  font-weight:700;
+  font-size:13px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+
+summary::after { content:"+"; font-size:20px; color:var(--gold); }
+details[open] summary::after { content:"−"; }
+details p { font-size:12px; color:var(--muted); padding-top:12px; }
+
+/* CONTACT */
+.contact-box {
+  background:#eae4d8;
+  border-radius:20px;
+  padding:clamp(28px,6vw,55px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+}
+
+.contact-box h2 { max-width:560px; }
+.contact-box p { color:var(--muted); font-size:13px; margin-top:12px; }
+.contact-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:22px; }
+
+footer {
+  padding:27px 0;
+  border-top:1px solid var(--line);
+  font-size:11px;
+  color:var(--muted);
+}
+
+.footer-inner {
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.footer-links { display:flex; gap:18px; }
+
+/* CART AND CHECKOUT */
+.cart-fab {
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:30;
+  background:var(--gold);
+  color:#20201e;
+  border:0;
+  border-radius:50px;
+  padding:13px 17px;
+  box-shadow:0 10px 30px #0002;
+  font-size:12px;
+  font-weight:800;
+  display:none;
+}
+
+.cart-fab.show { display:block; }
+
+.cart-count {
+  display:inline-grid;
+  place-items:center;
+  background:var(--dark);
+  color:white;
+  border-radius:50%;
+  width:21px;
+  height:21px;
+  margin-left:5px;
+  font-size:10px;
+}
+
+.modal-backdrop {
+  position:fixed;
+  inset:0;
+  background:#111a;
+  z-index:50;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+
+.modal-backdrop.open { display:flex; }
+
+.modal {
+  width:min(520px,100%);
+  max-height:85vh;
+  overflow:auto;
+  background:var(--bg);
+  border-radius:17px;
+  padding:24px;
+}
+
+.modal-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.modal-head h3 { font:800 22px Manrope,sans-serif; }
+.close-btn { border:0; background:none; font-size:25px; }
+.cart-items { display:grid; gap:9px; }
+
+.cart-item {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:9px;
+  font-size:12px;
+}
+
+.remove-btn { border:0; background:none; color:#a24d3c; font-size:11px; }
+
+.cart-total {
+  display:flex;
+  justify-content:space-between;
+  border-top:1px solid var(--line);
+  padding-top:15px;
+  margin-top:15px;
+  font-weight:800;
+}
+
+.form-field { display:grid; gap:6px; margin-top:13px; }
+.form-field label { font-size:11px; font-weight:700; }
+
+.form-field input,.form-field textarea {
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:11px;
+  background:white;
+  outline:none;
+}
+
+.form-field input:focus,.form-field textarea:focus { border-color:var(--gold); }
+.checkout-btn { width:100%; margin-top:18px; }
+.empty { font-size:12px; color:var(--muted); padding:10px 0; }
+
+.reveal {
+  opacity:0;
+  transform:translateY(17px);
+  transition:opacity .65s ease,transform .65s ease;
+}
+
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+@media(max-width:800px) {
+  .navlinks { gap:12px; }
+  .navlinks a { font-size:11px; }
+  .hero { padding:75px 0 55px; }
+  .services-grid { grid-template-columns:repeat(2,1fr); }
+  .proof-panel { grid-template-columns:1fr; }
+  .proof-btn { justify-self:start; }
+  .rating-wrap { grid-template-columns:1fr; }
+  .rating-score { border-right:0; border-bottom:1px solid var(--line); padding:0 0 20px; }
+  .steps { grid-template-columns:repeat(2,1fr); }
+  .contact-box { align-items:flex-start; flex-direction:column; }
+}
+
+@media(max-width:560px) {
+  .container { width:calc(100% - 28px); }
+  nav { min-height:66px; }
+  .menu-btn { display:block; }
+  .navlinks {
+    display:none;
+    position:absolute;
+    top:66px;
+    left:0;
+    right:0;
+    background:var(--bg);
+    padding:18px 22px 22px;
+    border-bottom:1px solid var(--line);
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .navlinks.open { display:flex; }
+  nav > .btn { display:none; }
+  .hero { padding:60px 0 45px; }
+  .hero h1 { font-size:clamp(39px,11vw,56px); letter-spacing:-2px; }
+  .hero-meta { gap:20px; margin-top:35px; }
+  .section-head { align-items:flex-start; flex-direction:column; }
+  .services-grid,.why-grid { grid-template-columns:1fr; }
+  .service-card { min-height:205px; }
+  .steps { grid-template-columns:1fr 1fr; }
+  .step { padding:15px; }
+  .footer-inner { flex-direction:column; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto!important;
+    animation:none!important;
+    transition:none!important;
+  }
+  .reveal { opacity:1; transform:none; }
+}
+</style>
+</head>
+
+<body class="locked">
+
+<!-- OPENING WELCOME -->
+<div id="welcomeScreen">
+  <div class="welcome-content">
+    <div class="welcome-logo">FC</div>
+    <div class="welcome-line"></div>
+    <p class="welcome-label">INDEPENDENT DESIGN STUDIO</p>
+    <h1>Welcome to<br><span>Faqih Creative</span></h1>
+    <p class="welcome-desc">Creative ideas. Meaningful designs.</p>
+    <div class="welcome-loader"><span></span></div>
+    <p class="welcome-loading">PREPARING YOUR EXPERIENCE</p>
+  </div>
+</div>
+
+<div class="topline"></div>
+
+<header>
+  <div class="container">
+    <nav>
+      <a class="brand" href="#home">
+        <span class="brand-mark">FC</span>
+        <span>Faqih Creative<small>DESIGN STUDIO</small></span>
+      </a>
+
+      <div class="navlinks" id="navlinks">
+        <a href="#home">Home</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#portfolio">Bukti Karya</a>
+        <a href="#rating">Rating</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+
+      <a class="btn" href="#layanan">Pilih Layanan ↗</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="container">
+    <div class="eyebrow reveal">Independent Graphic Design Studio</div>
+    <h1 class="reveal">Desain yang punya<br><em>karakter.</em> Dibuat dengan tujuan.</h1>
+    <p class="hero-copy reveal">
+      Faqih Creative membantu mewujudkan ide menjadi desain visual
+      yang berkarakter, profesional, dan sesuai kebutuhan.
+      Pilih layanan, ceritakan idemu, lalu mulai proyekmu.
+    </p>
+
+    <div class="hero-actions reveal">
+      <a class="btn" href="#layanan">Jelajahi Layanan ↗</a>
+      <a class="btn btn-outline" href="https://www.instagram.com/faqihcreative/" target="_blank" rel="noopener noreferrer">Lihat Instagram ↗</a>
+    </div>
+
+    <div class="hero-meta reveal">
+      <div><strong>Creative</strong>Ide jadi visual</div>
+      <div><strong>Personal</strong>Dikerjakan owner</div>
+      <div><strong>Terarah</strong>Proses jelas</div>
+    </div>
+  </div>
+</section>
+
+<section id="layanan">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="kicker">Services & Pricing</div><h2>Pilih desainmu.</h2></div>
+      <p class="section-desc">Pilih layanan yang sesuai kebutuhanmu. Tambahkan ke keranjang untuk menghitung total dan mengirim detail pesanan lewat WhatsApp.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card reveal" data-name="Poster Game" data-price="20000">
+        <div class="card-top"><span class="service-icon">✳</span><span class="service-number">SERVICE / 01</span></div>
+        <h3>Poster Game</h3><p>Visual promosi game dengan komposisi dan tipografi menarik.</p>
+        <div class="service-bottom"><div class="price">Rp20.000 <small>/ desain</small></div><button class="add-btn">+ Tambah</button></div>
+      </article>
+
+      <article class="service-card reveal" data-name="Desain Kaos" data-price="20000">
+        <div class="card-top"><span class="service-icon">◈</span><span class="service-number">SERVICE / 02</span></div>
+        <h3>Desain Kaos</h3><p>Konsep grafis untuk kaos, komunitas, acara, atau identitas personal.</p>
+        <div class="service-bottom"><div class="price">Rp20.000 <small>/ desain</small></div><button class="add-btn">+ Tambah</button></div>
+      </article>
+
+      <article class="service-card reveal" data-name="Poster Promosi" data-price="20000">
+        <div class="card-top"><span class="service-icon">▧</span><span class="service-number">SERVICE / 03</span></div>
+        <h3>Poster Promosi</h3><p>Materi visual untuk promosi produk, acara, dan media sosial.</p>
+        <div class="service-bottom"><div class="price">Rp20.000 <small>/ desain</small></div><button class="add-btn">+ Tambah</button></div>
+      </article>
+
+      <article class="service-card reveal" data-name="Feed Instagram" data-price="20000">
+        <div class="card-top"><span class="service-icon">▦</span><span class="service-number">SERVICE / 04</span></div>
+        <h3>Feed Instagram</h3><p>Desain feed untuk membantu konten terlihat rapi dan konsisten.</p>
+        <div class="service-bottom"><div class="price">Rp20.000 <small>/ desain</small></div><button class="add-btn">+ Tambah</button></div>
+      </article>
+
+      <article class="service-card reveal" data-name="Banner Digital" data-price="20000">
+        <div class="card-top"><span class="service-icon">▱</span><span class="service-number">SERVICE / 05</span></div>
+        <h3>Banner Digital</h3><p>Banner untuk informasi, promosi, atau publikasi digital.</p>
+        <div class="service-bottom"><div class="price">Rp20.000 <small>/ desain</small></div><button class="add-btn">+ Tambah</button></div>
+      </article>
+
+      <article class="service-card reveal" data-name="Desain Custom" data-price="20000">
+        <div class="card-top"><span class="service-icon">✧</span><span class="service-number">SERVICE / 06</span></div>
+        <h3>Desain Custom</h3><p>Punya ide lain? Ceritakan kebutuhanmu untuk didiskusikan.</p>
+        <div class="service-bottom"><div class="price">Mulai 20K <small>/ proyek</small></div><button class="add-btn">+ Tambah</button></div>
+      </article>
+    </div>
+
+    <p class="note">* Harga awal Rp20.000 per desain. Harga final dikonfirmasi sesuai detail dan tingkat kesulitan pekerjaan.</p>
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="kicker">Owner's Work</div><h2>Bukti karya owner.</h2></div>
+      <p class="section-desc">Lihat langsung desain yang pernah dibuat melalui Instagram resmi Faqih Creative.</p>
+    </div>
+
+    <div class="proof-panel reveal">
+      <div>
+        <div class="proof-tag">ORIGINAL DESIGN WORK · FAQIH CREATIVE</div>
+        <h3>Bukan sekadar janji.<br>Lihat langsung hasil karyanya.</h3>
+        <p>Jelajahi portofolio dan contoh karya melalui Instagram resmi. Tombol ini akan membuka profil owner di tab baru.</p>
+      </div>
+      <a class="btn proof-btn" href="https://www.instagram.com/faqihcreative/" target="_blank" rel="noopener noreferrer">Lihat Bukti Desain ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="keunggulan">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="kicker">Why Faqih Creative</div><h2>Detail yang diperhatikan.</h2></div>
+      <p class="section-desc">Komunikasi jelas dan proses terarah membantu pesanan berjalan lebih nyaman.</p>
+    </div>
+
+    <div class="why-grid">
+      <article class="why-card reveal"><div class="num">01</div><h3>Dikerjakan dengan perhatian</h3><p>Pesanan dimulai dengan memahami kebutuhan dan arahan desain.</p></article>
+      <article class="why-card reveal"><div class="num">02</div><h3>Proses jelas</h3><p>Detail pesanan, harga, dan kebutuhan desain dibicarakan sebelum pengerjaan.</p></article>
+      <article class="why-card reveal"><div class="num">03</div><h3>Revisi terarah</h3><p>Maksimal 3 kali revisi sesuai kesepakatan. Revisi tambahan dapat dikenakan biaya.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="rating">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="kicker">Service Rating</div><h2>Pelayanan yang berarti.</h2></div>
+      <p class="section-desc">Kepuasan pelanggan dibangun dari komunikasi, kejelasan proses, dan hasil yang sesuai kesepakatan.</p>
+    </div>
+
+    <div class="rating-wrap reveal">
+      <div class="rating-score">
+        <div class="stars" aria-label="Lima bintang">★★★★★</div>
+        <strong>5/5</strong>
+        <p>Standar pelayanan yang ingin terus dijaga Faqih Creative.</p>
+      </div>
+      <div class="rating-content">
+        <h3>Pengalaman pelanggan jadi prioritas.</h3>
+        <p>Setiap proyek adalah kesempatan untuk memberikan pelayanan ramah, responsif, dan sesuai brief. Pelanggan dapat membagikan ulasan berdasarkan pengalaman nyata mereka.</p>
+        <p class="rating-disclaimer">Catatan: angka 5/5 ini merupakan target pelayanan, rata-rata ulasan pelanggan.</p>
+        <a class="btn btn-outline" style="margin-top:15px" href="https://www.instagram.com/faqihcreative/" target="_blank" rel="noopener noreferrer">Kunjungi Instagram ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cara-order">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="kicker">Simple Process</div><h2>Cara order.</h2></div>
+      <p class="section-desc">Empat langkah sederhana dari memilih layanan sampai brief dikirim.</p>
+    </div>
+
+    <div class="steps">
+      <article class="step reveal"><span>01</span><h3>Pilih layanan</h3><p>Tambahkan layanan yang kamu butuhkan ke keranjang.</p></article>
+      <article class="step reveal"><span>02</span><h3>Isi detail</h3><p>Masukkan nama dan brief singkat desain.</p></article>
+      <article class="step reveal"><span>03</span><h3>Kirim pesanan</h3><p>Checkout untuk membuka WhatsApp dengan ringkasan pesanan.</p></article>
+      <article class="step reveal"><span>04</span><h3>Konfirmasi</h3><p>Konfirmasi harga, referensi, deadline, dan pengerjaan bersama owner.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-head reveal"><div><div class="kicker">FAQ</div><h2>Yang sering ditanyakan.</h2></div></div>
+    <div class="faq-list reveal">
+      <details><summary>Bagaimana cara melihat karya owner?</summary><p>Klik tombol “Lihat Bukti Desain” untuk diarahkan ke Instagram @faqihcreative.</p></details>
+      <details><summary>Berapa harga jasa desain?</summary><p>Harga awal pada katalog adalah Rp20.000 per desain. Harga akhir dikonfirmasi sesuai detail pekerjaan.</p></details>
+      <details><summary>Berapa kali revisi yang didapat?</summary><p>Maksimal 3 kali revisi sesuai kesepakatan awal. Revisi tambahan dapat dikenakan biaya.</p></details>
+      <details><summary>Apakah pembayaran langsung dari website?</summary><p>Belum. Website menyusun detail pesanan lalu membuka WhatsApp. Pembayaran dikonfirmasi bersama owner.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="kontak">
+  <div class="container">
+    <div class="contact-box reveal">
+      <div>
+        <div class="kicker">Let's Create Something</div>
+        <h2>Punya ide? Mari wujudkan.</h2>
+        <p>Ceritakan kebutuhan desainmu dan diskusikan detail pesanan bersama Faqih Creative.</p>
+        <div class="contact-actions">
+          <button class="btn" id="contactOrder">Mulai Pesan ↗</button>
+          <a class="btn btn-outline" href="https://www.instagram.com/faqihcreative/" target="_blank" rel="noopener noreferrer">Instagram Owner ↗</a>
+        </div>
+      </div>
+      <div class="brand"><span class="brand-mark">FC</span><span>Faqih Creative<small>DESIGN STUDIO</small></span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© <span id="year"></span> Faqih Creative. Made with purpose.</div>
+    <div class="footer-links">
+      <a href="#home">Kembali ke atas ↑</a>
+      <a href="https://www.instagram.com/faqihcreative/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+    </div>
+  </div>
+</footer>
+
+<button class="cart-fab" id="cartFab">Keranjang <span class="cart-count" id="cartCount">0</span></button>
+
+<div class="modal-backdrop" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="cartTitle">Keranjang pesanan</h3>
+      <button class="close-btn" id="closeModal" aria-label="Tutup">×</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-total"><span>Estimasi total</span><span id="cartTotal">Rp0</span></div>
+    <p class="note">Total merupakan estimasi. Harga final dikonfirmasi bersama owner.</p>
+    <form id="checkoutForm">
+      <div class="form-field">
+        <label for="customerName">Nama kamu</label>
+        <input id="customerName" placeholder="Nama pemesan" required maxlength="80">
+      </div>
+      <div class="form-field">
+        <label for="brief">Brief desain</label>
+        <textarea id="brief" rows="3" placeholder="Ceritakan konsep, ukuran, teks, referensi, atau deadline..." required maxlength="1000"></textarea>
+      </div>
+      <button class="btn checkout-btn" type="submit">Kirim Struk ke WhatsApp ↗</button>
+    </form>
+  </div>
+</div>
+
+<script>
+/* WELCOME SCREEN */
+document.body.classList.add("locked");
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("welcomeScreen").classList.add("hide");
+    document.body.classList.remove("locked");
+  }, 2400);
+});
+
+/* GANTI DENGAN NOMOR WHATSAPP OWNER.
+   Format Indonesia: 628xxxxxxxxxx, tanpa tanda + atau spasi. */
+const OWNER_WHATSAPP = "6287883974147";
+
+const cart = [];
+const rupiah = n => new Intl.NumberFormat("id-ID", {
+  style:"currency",
+  currency:"IDR",
+  maximumFractionDigits:0
+}).format(n);
+
+const cartFab = document.getElementById("cartFab");
+const modal = document.getElementById("cartModal");
+const cartItems = document.getElementById("cartItems");
+const cartTotal = document.getElementById("cartTotal");
+const cartCount = document.getElementById("cartCount");
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.querySelectorAll(".service-card .add-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const card = btn.closest(".service-card");
+
+    cart.push({
+      name:card.dataset.name,
+      price:Number(card.dataset.price)
+    });
+
+    renderCart();
+    btn.textContent = "✓ Ditambahkan";
+    setTimeout(() => btn.textContent = "+ Tambah", 1000);
+    cartFab.classList.add("show");
+  });
+});
+
+function renderCart() {
+  cartItems.innerHTML = "";
+
+  if (!cart.length) {
+    cartItems.innerHTML =
+      '<p class="empty">Keranjang masih kosong. Tambahkan layanan dari katalog.</p>';
+  }
+
+  cart.forEach((item,index) => {
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    const label = document.createElement("span");
+    label.textContent = item.name + " — " + rupiah(item.price);
+
+    const remove = document.createElement("button");
+    remove.className = "remove-btn";
+    remove.textContent = "Hapus";
+
+    remove.addEventListener("click", () => {
+      cart.splice(index,1);
+      renderCart();
+    });
+
+    row.append(label,remove);
+    cartItems.appendChild(row);
+  });
+
+  const total = cart.reduce((sum,item) => sum + item.price,0);
+
+  cartTotal.textContent = rupiah(total);
+  cartCount.textContent = cart.length;
+  cartFab.classList.toggle("show",cart.length > 0);
+}
+
+function openCart() {
+  renderCart();
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeCart() {
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+cartFab.addEventListener("click",openCart);
+document.getElementById("contactOrder").addEventListener("click",openCart);
+document.getElementById("closeModal").addEventListener("click",closeCart);
+
+modal.addEventListener("click",e => {
+  if (e.target === modal) closeCart();
+});
+
+document.addEventListener("keydown",e => {
+  if (e.key === "Escape") closeCart();
+});
+
+document.getElementById("checkoutForm").addEventListener("submit",e => {
+  e.preventDefault();
+
+  if (!cart.length) {
+    alert("Keranjang masih kosong. Pilih layanan terlebih dahulu.");
+    return;
+  }
+
+  if (OWNER_WHATSAPP === "6287883974147") {
+    alert("Ganti OWNER_WHATSAPP di JavaScript dengan nomor WhatsApp owner yang benar.");
+    return;
+  }
+
+  const name = document.getElementById("customerName").value.trim();
+  const brief = document.getElementById("brief").value.trim();
+  const total = cart.reduce((sum,item) => sum + item.price,0);
+
+  const orderLines = cart.map((item,i) =>
+    `${i+1}. ${item.name} — ${rupiah(item.price)}`
+  ).join("\n");
+
+  const message = [
+    "Halo Faqih Creative, saya ingin memesan jasa desain.",
+    "",
+    "Nama: " + name,
+    "",
+    "Detail pesanan:",
+    orderLines,
+    "",
+    "Estimasi total: " + rupiah(total),
+    "Brief: " + brief,
+    "",
+    "Mohon konfirmasi harga final dan proses pengerjaan. Terima kasih."
+  ].join("\n");
+
+  const url = "https://wa.me/" + OWNER_WHATSAPP +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(url,"_blank");
+});
+
+/* MOBILE MENU */
+const menuBtn = document.getElementById("menuBtn");
+const navlinks = document.getElementById("navlinks");
+
+menuBtn.addEventListener("click",() => {
+  navlinks.classList.toggle("open");
+});
+
+navlinks.querySelectorAll("a").forEach(a => {
+  a.addEventListener("click",() => navlinks.classList.remove("open"));
+});
+
+/* SCROLL REVEAL */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.12});
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
